@@ -1,5 +1,8 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+database_exists_button_text = {'EN_en': ['📥 load done', '⟳ 🔄 generate again'],
+                               'RU_ru': ['📥 загрузить существующие', '⟳ 🔄 сгенерировать снова']}
+
 language_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
@@ -17,6 +20,17 @@ room_keyboard = InlineKeyboardMarkup(
         ]
     ]
 )
+
+
+database_exists_keyboard = lambda lang: InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text=database_exists_button_text[lang][0], callback_data="load"),
+            InlineKeyboardButton(text=database_exists_button_text[lang][1], callback_data="generate")
+        ]
+    ]
+)
+
 
 
 def get_messages(language='EN_en'):
@@ -37,7 +51,8 @@ def get_messages(language='EN_en'):
             'Form:room': ['Этот бот анализирует ваш стиль игры и предоставляет интересную статистику по вашим партиям',
                           'На какой платформе вы играете?'],
             'Form:nickname': 'Напишите свой ник',
-            'Form:game_type': '{}, Вы сыграли игр blitz: {} и rapid:{}. Как лучше проанализировать?',
+            'Form:database_exists': '{}, вы даже не даже 📥, ⟳  🔄 ',
+            'Form:game_type': '{}, Вы сыграли игр blitz: {} и rapid: {}. Как лучше проанализировать?',
             'Form:wait': 'Обсчёт всех партий займет около 10 минут',
             'Form:style_report': 'Ваш стиль это: {} /n {}',
             'Form:heat_board': 'Тепловая карта за белых | за чёрных',
@@ -63,22 +78,26 @@ class GameTypeKeyboard:
     def get_keyboard(self):
         if self.rapid_num >= self.max_num_games:
             text = f'🕑 {self.max_num_games} rapid'
-            callback_data = f'{0}|{self.max_num_games}'
+            game_type_index = 1
+            callback_data = f'{0}|{self.max_num_games}|{game_type_index}'
             self.add_button(text, callback_data)
         elif 5 <= self.rapid_num <= self.max_num_games:
             surplus = min(self.max_num_games - self.rapid_num, self.blitz_num)
             text = f'⚡ {surplus} blitz & 🕑 {self.rapid_num} rapid'
-            callback_data = f'{surplus}|{self.rapid_num}'
+            game_type_index = 1
+            callback_data = f'{surplus}|{self.rapid_num}|{game_type_index}'
             self.add_button(text, callback_data)
 
         if self.blitz_num >= self.max_num_games:
             text = f'⚡ {self.max_num_games} blitz'
-            callback_data = f'{self.max_num_games}|{0}'
+            game_type_index = 0
+            callback_data = f'{self.max_num_games}|{0}|{game_type_index}'
             self.add_button(text, callback_data)
         elif 5 <= self.blitz_num <= self.max_num_games:
             surplus = min(self.max_num_games - self.blitz_num, self.rapid_num)
             text = f'⚡ {self.blitz_num} blitz & 🕑 {surplus} rapid'
-            callback_data = f'{self.blitz_num}|{surplus}'
+            game_type_index = 0
+            callback_data = f'{self.blitz_num}|{surplus}|{game_type_index}'
             self.add_button(text, callback_data)
 
         self.keyboard = InlineKeyboardMarkup(
