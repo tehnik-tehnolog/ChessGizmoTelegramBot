@@ -48,7 +48,7 @@ async def cmd_start(message: types.Message, state: FSMContext):
 
 @dp.callback_query(Form.language)
 async def handle_language(callback: types.CallbackQuery, state: FSMContext):
-    # Сохраняем выбранный язык в состоянии
+    # Save the selected language in the state
     language = callback.data
     messages = get_messages(language)
     await state.update_data(language=language, messages=messages)
