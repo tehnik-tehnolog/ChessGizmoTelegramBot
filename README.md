@@ -71,8 +71,8 @@ graph TD
 ## 📸 Screenshots of work
 Below is the process of first interaction with the bot: choosing a platform, entering a nickname, and receiving the final chess card with style and graphs.
 
-<img width="455" height="1256" alt="En_gen - 1" src="https://github.com/user-attachments/assets/4cd59a13-4000-4b1a-9aa2-8a89ef64cdb3" />
-<img width="454" height="1250" alt="En_gen - 2" src="https://github.com/user-attachments/assets/3227ce35-db9c-4df9-8185-f933f923d50b" />
+<img width="400" height="1256" alt="En_gen - 1" src="https://github.com/user-attachments/assets/4cd59a13-4000-4b1a-9aa2-8a89ef64cdb3" />
+<img width="400" height="1250" alt="En_gen - 2" src="https://github.com/user-attachments/assets/3227ce35-db9c-4df9-8185-f933f923d50b" />
 
 Thanks to the Supabase integration, the bot remembers your data. If the report has already been generated, the bot will offer to instantly download it from Backblaze B2 or refresh the data again.
 
@@ -233,8 +233,8 @@ graph TD
 ## 📸 Скриншоты работы
 Ниже представлен процесс первого взаимодействия с ботом: выбор платформы, ввод никнейма и получение итоговой шахматной карточки со стилем и графиками.
 
-<img width="455" height="1243" alt="Ru_gen - 1" src="https://github.com/user-attachments/assets/639c866a-1b6e-4e5d-9649-9a3236015509" />
-<img width="452" height="1036" alt="Ru_gen - 2" src="https://github.com/user-attachments/assets/465cc85f-db2b-4668-90e3-fdf5bfe0cc2b" />
+<img width="400" height="1243" alt="Ru_gen - 1" src="https://github.com/user-attachments/assets/639c866a-1b6e-4e5d-9649-9a3236015509" />
+<img width="400" height="1036" alt="Ru_gen - 2" src="https://github.com/user-attachments/assets/465cc85f-db2b-4668-90e3-fdf5bfe0cc2b" />
 
 Благодаря интеграции с Supabase, бот запоминает ваши данные. Если отчет уже генерировался ранее, бот предложит мгновенно загрузить его из Backblaze B2 или обновить данные заново.
 
